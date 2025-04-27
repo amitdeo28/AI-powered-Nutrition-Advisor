@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Meal Recommender - Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meal Recommender</h1>
+        <button onclick="document.getElementById('descriptionModal').style.display='flex'">Learn More About Diseases</button>
+        <form action="/recommend" method="POST">
+            <div class="form-group">
+                <label for="conditions">Select Health Conditions:</label>
+                <select id="conditions" name="conditions" multiple size="6">
+                    <option value="diabetes">Diabetes</option>
+                    <option value="high_blood_pressure">High Blood Pressure</option>
+                    <option value="heart_disease">Heart Disease</option>
+                    <option value="liver_disease">Liver Disease</option>
+                    <option value="stroke">Stroke</option>
+                    <option value="kidney_disease">Kidney Disease</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="severity">Select Severity Level:</label>
+                <select id="severity" name="severity">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <button type="submit">Get Meal Recommendations</button>
+        </form>
+    </div>
+
+    <!-- Modal for disease descriptions -->
+    <div id="descriptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('descriptionModal').style.display='none'">&times;</span>
+            <h3>Disease Descriptions</h3>
+            <p><strong>Diabetes:</strong> A chronic condition that affects how your body processes blood sugar (glucose).</p>
+            <p><strong>High Blood Pressure:</strong> Sustained high pressure in arteries, increasing the risk of heart disease.</p>
+            <p><strong>Heart Disease:</strong> Conditions affecting the heart, including coronary artery disease and heart failure.</p>
+            <p><strong>Liver Disease:</strong> Disorders affecting liver function, such as hepatitis or fatty liver disease.</p>
+            <p><strong>Stroke:</strong> Interruption of blood flow to the brain, causing brain damage.</p>
+            <p><strong>Kidney Disease:</strong> A condition where kidneys fail to filter blood effectively.</p>
+        </div>
+    </div>
+
+    <script>
+        // Close modal if clicked outside of content
+        window.onclick = function(event) {
+            const modal = document.getElementById('descriptionModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

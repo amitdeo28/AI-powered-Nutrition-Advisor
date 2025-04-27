@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Meal Recommender - Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h3 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meal Recommendations</h1>
+        <div style="background-color: #5cb85c; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h3>Your Selections:</h3>
+            <p><strong>Conditions:</strong> {{ selected_conditions | join(', ') }}</p>
+            <p><strong>Severity Level:</strong> {{ selected_severity }}</p>
+        </div>
+
+        <div style="background-color: #5cb85c; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h3>Recommended Meals:</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                <th style="border: 1px solid #ddd; padding: 8px;">Meal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in recommendations %}
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ meal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+        <h3>Precautions:</h3>
+        <ul>
+            {% for condition, precaution in precautions.items() %}
+            <li><strong>{{ condition }}:</strong> {{ precaution }}</li>
+            {% endfor %}
+        </ul>
+
+        <button onclick="window.location.href='/'">Go Back</button>
+    </div>
+</body>
+</html>
